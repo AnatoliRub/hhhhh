@@ -4,6 +4,8 @@ var words = document.querySelector(".words");
 var start = document.getElementById("start");
 var clear = document.getElementById("clear");
 
+check = false
+
 var rec = new SpeechRecognition();
 rec.interimResults = true;
 
@@ -11,9 +13,14 @@ var p = document.createElement("p");
 words.appendChild(p);
 
 start.addEventListener("click", function() {
+    acces = check == false ? true : false
+    if(acces == true){
     rec.start();
-    this.disabled = true;
     this.innerHTML = "LISTENING...";
+    } else {
+        rec.stop();
+        this.innerHTML = 'Start'
+    }
 });
 
 clear.addEventListener("click", function() {
